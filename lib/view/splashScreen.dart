@@ -1,23 +1,25 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:meme_app/view/loginScreen.dart';
 import 'package:meme_app/view/mainScreen.dart';
+import 'package:meme_app/view/wrapper.dart';
 
-class splashScreen extends StatefulWidget {
-  const splashScreen({super.key});
+class SplashScreen extends StatefulWidget {
+   SplashScreen({super.key});
 
   @override
-  State<splashScreen> createState() => _splashScreenState();
+  State<SplashScreen> createState() => _splashScreenState();
 }
 
-class _splashScreenState extends State<splashScreen> {
+class _splashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
     super.initState();
 
    Timer(Duration(seconds: 5), (){
-     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MainScreen(),
+     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Wrapper(),
      ));
    });
   }

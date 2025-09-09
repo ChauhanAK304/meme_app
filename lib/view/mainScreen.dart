@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:meme_app/controller/fetchMeme.dart';
 import 'package:meme_app/controller/saveMyData.dart';
+import 'package:meme_app/view/profileScreen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -10,6 +12,8 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  final user=FirebaseAuth.instance.currentUser;
+
   String imgUrl = "";
   int memeNo = 0;
   int targetMeme = 100;
@@ -60,12 +64,22 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.cyanAccent,
+      appBar: AppBar(
+        actions: [IconButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => MyProfile(),));
+          }, icon: Icon(Icons.account_circle,size: 45,color: Colors.black,))
+          
+        ],
+
+        backgroundColor: Colors.amber,
+
+
+      ),
+      backgroundColor: Colors.limeAccent.shade100,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const SizedBox(height: 120),
+             SizedBox(height: 15),
             Text(
               "Meme #$memeNo",
               style: const TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
@@ -78,7 +92,7 @@ class _MainScreenState extends State<MainScreen> {
             const SizedBox(height: 30),
             isLoading
                 ? SizedBox(
-              height: 400,
+              height: 200,
               width: MediaQuery.of(context).size.width,
               child: const Center(
                 child: SizedBox(
